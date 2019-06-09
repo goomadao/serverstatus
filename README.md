@@ -22,7 +22,6 @@ If there is no status received from a client in the past 30 seconds, it will be 
 If there is no status received from a client in temp servers in the past 3 days, it will be deleted automatically.
 
 ## Build
----
 
 ### Clone the repo
 
