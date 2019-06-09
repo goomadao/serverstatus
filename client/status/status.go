@@ -226,7 +226,9 @@ func getSystem(c chan string) {
 	line = line[strings.Index(line, "=")+1 : len(line)-1]
 	line = strings.ReplaceAll(line, "\"", "")
 	line = strings.Trim(line, " ")
-	line = line[:strings.Index(line, " ")]
+	if strings.Index(line, " ") != -1 {
+		line = line[:strings.Index(line, " ")]
+	}
 	line = strings.Trim(line, " ")
 	c <- line + "\n" + runtime.GOARCH
 }
