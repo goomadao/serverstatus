@@ -22,12 +22,12 @@ var (
 )
 
 func init() {
-	port = flag.Int("P", 36580, "The port to receive information from clients")
-	webPort = flag.Int("p", 8080, "The port for the dashboard")
+	port = flag.Int("p", 36580, "The port to receive information from clients")
+	webPort = flag.Int("P", 8080, "The port for the dashboard")
 	statusFile = flag.String("f", "./status.json", "The position to store received status")
 	password = flag.String("k", "", "Password to connect to this server")
 	logFile = flag.String("L", "./serverstatus.log", "The path to store the log file")
-	logLevel = flag.String("level", "info", "Log levels: [ debug, info, error]")
+	logLevel = flag.String("level", "error", "Log levels: [ debug, info, error]")
 	help = flag.Bool("h", false, "This help")
 
 	flag.Usage = usage
@@ -35,7 +35,7 @@ func init() {
 
 func usage() {
 	fmt.Fprintf(os.Stderr, `serverstatus server
-Usage: serverstatus -k password [-P udp port(default 36580)] [-p dashboard port(default 8080)] -L logFile -level logLevel [-f statusFile(default ./status.json] [-h help]
+Usage: serverstatus -k password [-p udpPort] [-P dashboardPort] [-L logFile] [-level logLevel] [-f statusFile]
 	
 Options:
 `)

@@ -26,7 +26,7 @@ func init() {
 	password = flag.String("k", "", "Password to connect to server")
 	location = flag.String("l", "", "Location of this server")
 	logFile = flag.String("L", "./serverstatus.log", "The path to store the log file")
-	logLevel = flag.String("level", "info", "Log levels: [ debug, info, error]")
+	logLevel = flag.String("level", "error", "Log levels: [ debug, info, error]")
 	help = flag.Bool("h", false, "This help")
 
 	flag.Usage = usage
@@ -34,7 +34,7 @@ func init() {
 
 func usage() {
 	fmt.Fprintf(os.Stderr, `serverstatus client
-Usage: serverstatus -s serverAddress [-p port(default 36580)] -L logFile -level logLevel -n serverName -k password -l location -h help
+Usage: serverstatus -k password -s serverAddress [-p port] [-L logFile] [-level logLevel] [-n serverName] [-l location]
 
 Options:
 `)
