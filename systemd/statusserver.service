@@ -4,8 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
-PrivateTmp=false
-ExecStart=/root/serverstatus/server -p 36580 -L /tmp/statusserver.log -f /tmp/status.json -level error -k yourPassword -P 8080
+User=nobody
+Restart=on-failure
+RestartSec=5s
+ExecStart=/Your/Path/To/server -p 36580 -L /tmp/statusserver.log -f /tmp/status.json -level error -k yourPassword -P 8080
 
 [Install]
 WantedBy=multi-user.target
