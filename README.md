@@ -68,7 +68,7 @@ Usage: serverstatus -k password [-p udpPort] [-P dashboardPort] [-L logFile] [-l
 	
 Options:
   -L string
-    	The path to store the log file (default "./serverstatus.log")
+    	The path to store the log file (default "./statusserver.log")
   -P int
     	The port for the dashboard (default 8080)
   -f string
@@ -84,7 +84,7 @@ Options:
 
 For example:
 ```bash
-./server -k yourPassword -p 36580 -P 8080 -L /tmp/serverstatuastatus.log -level error -f /tmp/status.json
+./server -k yourPassword -p 36580 -P 8080 -L /tmp/statusserver.log -level error -f /tmp/status.json
 ```
 
 ### Client
@@ -97,7 +97,7 @@ Usage: serverstatus -k password -s serverAddress [-p port] [-L logFile] [-level 
 
 Options:
   -L string
-    	The path to store the log file (default "./serverstatus.log")
+    	The path to store the log file (default "./statusclient.log")
   -h	This help
   -k string
     	Password to connect to server
@@ -115,7 +115,7 @@ Options:
 
 For example:
 ```bash
-./client -k yourPassword -s example.your.domain -p 36580 -n "Server Name" -l "Server Location" -L /tmp/serverstatus.log -level info
+./client -k yourPassword -s example.your.domain -p 36580 -n "Server Name" -l "Server Location" -L /tmp/statusclient.log -level info
 ```
 
 ## Todos
