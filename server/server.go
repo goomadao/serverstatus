@@ -26,7 +26,7 @@ func init() {
 	webPort = flag.Int("P", 8080, "The port for the dashboard")
 	statusFile = flag.String("f", "./status.json", "The position to store received status")
 	password = flag.String("k", "", "Password to connect to this server")
-	logFile = flag.String("L", "./serverstatus.log", "The path to store the log file")
+	logFile = flag.String("L", "./statusserver.log", "The path to store the log file")
 	logLevel = flag.String("level", "error", "Log levels: [ debug, info, error]")
 	help = flag.Bool("h", false, "This help")
 

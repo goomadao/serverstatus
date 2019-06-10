@@ -25,7 +25,7 @@ func init() {
 	serverName = flag.String("n", "", "Name of this server")
 	password = flag.String("k", "", "Password to connect to server")
 	location = flag.String("l", "", "Location of this server")
-	logFile = flag.String("L", "./serverstatus.log", "The path to store the log file")
+	logFile = flag.String("L", "./statusclient.log", "The path to store the log file")
 	logLevel = flag.String("level", "error", "Log levels: [ debug, info, error]")
 	help = flag.Bool("h", false, "This help")
 
