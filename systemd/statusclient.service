@@ -4,10 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=nobody
-Restart=on-failure
-RestartSec=5s
-ExecStart=/Your/Path/To/client -p 36580 -L /tmp/statusclient.log -level error -k yourPassword -n "Server Name" -l "Server Location" -s example.your.domain
+PrivateTmp=false
+ExecStart=/root/serverstatus/bin/client -p 36580 -L /tmp/statusclient.log -level error -k yourPassword -n "Server Name" -l "Server Location" -s example.your.domain
 
 [Install]
 WantedBy=multi-user.target
