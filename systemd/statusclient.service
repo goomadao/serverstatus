@@ -1,0 +1,11 @@
+[Unit]
+Description=Server Status Client
+After=network.target
+
+[Service]
+Type=simple
+PrivateTmp=false
+ExecStart=/root/serverstatus/client -p 36580 -L /tmp/statusclient.log -level error -k yourPassword -n "Server Name" -l "Server Location" -s example.your.domain
+
+[Install]
+WantedBy=multi-user.target
