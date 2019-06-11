@@ -40,13 +40,13 @@ git clone https://github.com/goomadao/serverstatus.git && cd serverstatus
 make client
 ```
 
-### Build server(npm needed)
+### Build server
 
 ```bash
 make server
 ```
 
-### Build client and server(npm needed)
+### Build client and server
 
 ```bash
 make
