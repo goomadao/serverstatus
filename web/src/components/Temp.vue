@@ -62,8 +62,8 @@
     </el-table-column>
     <el-table-column label="Network" prop="network">
       <template slot-scope="scope">
-        <p>⬆️{{ scope.row.downloadSpeed }}</p>
-        <p>⬇️{{ scope.row.uploadSpeed }}</p>
+        <p>⬆️{{ scope.row.uploadSpeed }}</p>
+        <p>⬇️{{ scope.row.downloadSpeed }}</p>
       </template>
     </el-table-column>
     <el-table-column label="CPU" prop="CPUUsed">
