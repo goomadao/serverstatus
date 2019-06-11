@@ -11,7 +11,7 @@ test:
 client:
 	go build -o bin/client ./client/client.go
 
-server: web
+server: 
 	go build -o bin/server ./server/server.go
 
 web:
@@ -19,8 +19,13 @@ web:
 	npm install; \
 	npm run build
 
+file:
+	rm -rf assets/static
+	cp -rf web/dist/static assets
+	rm -rf assets/statik
+	go generate ./assets/...
+
 clean:
-	rm -f bin/client
-	rm -f bin/server
+	rm -rf bin
 	rm -rf web/dist
 	rm -rf web/node_modules

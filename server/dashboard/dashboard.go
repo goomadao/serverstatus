@@ -3,11 +3,14 @@ package dashboard
 import (
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
 	"strconv"
 
+	"github.com/gin-gonic/gin"
+	_ "github.com/goomadao/serverstatus/assets/statik"
 	"github.com/goomadao/serverstatus/server/status"
 	"github.com/goomadao/serverstatus/util/logger"
-	"github.com/gin-gonic/gin"
+	"github.com/rakyll/statik/fs"
 
 	"go.uber.org/zap"
 )
@@ -56,10 +59,15 @@ func Dashboard() {
 			c.String(200, "fail")
 		}
 	})
-	r.LoadHTMLGlob("../web/dist/*.html")
-	r.LoadHTMLFiles("../web/static/*/*")
-	r.Static("/static", "../web/dist/static")
-	r.StaticFile("/", "../web/dist/index.html")
+	statikFS, err := fs.New()
+	if err != nil {
+		logger.Logger.Fatal("Create filesystem failed.",
+			zap.Error(err))
+	}
+	r.StaticFS("/static", statikFS)
+	r.GET("/", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, "static")
+	})
 
 	r.Run(":" + strconv.Itoa(Port))
 
