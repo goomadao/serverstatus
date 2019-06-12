@@ -151,7 +151,7 @@ func getUUID(c chan string) {
 				if err != nil {
 					logger.Logger.Error("Get machine-id from /etc/machine-id failed",
 						zap.Error(err))
-					continue
+					logger.Logger.Fatal("Can't acquire a unique id for the system.")
 				}
 			}
 			if uuid[len(uuid)-1] == 10 {
