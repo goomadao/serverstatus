@@ -145,9 +145,14 @@ func getUUID(c chan string) {
 		for {
 			uuid, err := ioutil.ReadFile("/sys/class/dmi/id/product_uuid")
 			if err != nil {
-				logger.Logger.Error("Get product_uuid failed",
+				logger.Logger.Error("Get product_uuid from /sys/class/dmi/id/product_uuid failed, try for /etc/machine-id",
 					zap.Error(err))
-				continue
+				uuid, err = ioutil.ReadFile("/etc/machine-id")
+				if err != nil {
+					logger.Logger.Error("Get machine-id from /etc/machine-id failed",
+						zap.Error(err))
+					continue
+				}
 			}
 			if uuid[len(uuid)-1] == 10 {
 				c <- string(uuid[:len(uuid)-1])
