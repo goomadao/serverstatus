@@ -11,7 +11,7 @@ import (
 	"github.com/goomadao/serverstatus/server/auth"
 	"github.com/goomadao/serverstatus/util/data"
 	"github.com/goomadao/serverstatus/util/logger"
-	
+
 	"go.uber.org/zap"
 )
 
@@ -118,6 +118,7 @@ func GetServers(servers *Servers) {
 					zap.Error(err2))
 				return
 			}
+			saveServers(servers)
 		} else {
 			logger.Logger.Error("Get stat of status file failed",
 				zap.Error(err))
