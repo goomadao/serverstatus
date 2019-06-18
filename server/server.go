@@ -11,7 +11,7 @@ import (
 	"github.com/goomadao/serverstatus/server/receive"
 	"github.com/goomadao/serverstatus/server/status"
 	"github.com/goomadao/serverstatus/util/logger"
-	
+
 	"go.uber.org/zap"
 )
 

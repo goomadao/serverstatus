@@ -5,7 +5,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"time"
 
+	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
 	_ "github.com/goomadao/serverstatus/assets/statik"
 	"github.com/goomadao/serverstatus/server/status"
@@ -46,17 +48,28 @@ func handlePost(c *gin.Context) bool {
 }
 
 func Dashboard() {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
+	r.Use(ginzap.Ginzap(logger.Logger, time.RFC3339, true))
+	r.Use(ginzap.RecoveryWithZap(logger.Logger, true))
 	r.GET("/api/servers", func(c *gin.Context) {
-		servers := new(status.Servers)
-		status.GetServers(servers)
-		c.JSON(200, servers)
+		if c.ClientIP() == "127.0.0.1" {
+			servers := new(status.Servers)
+			status.GetServers(servers)
+			c.JSON(http.StatusOK, servers)
+		} else {
+			c.String(http.StatusForbidden, "Forbidden")
+		}
 	})
 	r.POST("/api/servers", func(c *gin.Context) {
-		if handlePost(c) {
-			c.String(200, "success")
+		if c.ClientIP() == "127.0.0.1" {
+			if handlePost(c) {
+				c.String(http.StatusOK, "success")
+			} else {
+				c.String(http.StatusOK, "fail")
+			}
 		} else {
-			c.String(200, "fail")
+			c.String(http.StatusForbidden, "Forbidden")
 		}
 	})
 	statikFS, err := fs.New()
