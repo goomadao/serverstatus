@@ -19,7 +19,8 @@ web:
 	npm install; \
 	npm run build
 
-file:
+file: web
+	go get github.com/rakyll/statik
 	rm -rf assets/static
 	cp -rf web/dist/static assets
 	rm -rf assets/statik

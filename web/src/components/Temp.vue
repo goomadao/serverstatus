@@ -18,7 +18,7 @@
           <el-form-item label="Swap">
             <span>{{ props.row.swapUsed }}GiB / {{ props.row.swapTotal }}GiB</span>
           </el-form-item>
-          <el-form-item label="HDD">
+          <el-form-item label="Disk">
             <span>{{ props.row.diskUsed }}GiB / {{ props.row.diskTotal }}GiB</span>
           </el-form-item>
         </el-form>
@@ -86,7 +86,7 @@
         ></el-progress>
       </template>
     </el-table-column>
-    <el-table-column label="HDD" prop="diskRate">
+    <el-table-column label="Disk" prop="diskRate">
       <template slot-scope="scope">
         <el-progress
           :text-inside="true"

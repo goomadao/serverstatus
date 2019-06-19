@@ -53,7 +53,7 @@ func Dashboard() {
 	r.Use(ginzap.Ginzap(logger.Logger, time.RFC3339, true))
 	r.Use(ginzap.RecoveryWithZap(logger.Logger, true))
 	r.GET("/api/servers", func(c *gin.Context) {
-		if c.ClientIP() == "127.0.0.1" {
+		if c.ClientIP() == "127.0.0.1" || c.ClientIP() == "::1" || c.ClientIP() == "localhost" || c.ClientIP() == "0.0.0.0" {
 			servers := new(status.Servers)
 			status.GetServers(servers)
 			c.JSON(http.StatusOK, servers)
@@ -62,7 +62,7 @@ func Dashboard() {
 		}
 	})
 	r.POST("/api/servers", func(c *gin.Context) {
-		if c.ClientIP() == "127.0.0.1" {
+		if c.ClientIP() == "127.0.0.1" || c.ClientIP() == "::1" || c.ClientIP() == "localhost" || c.ClientIP() == "0.0.0.0" {
 			if handlePost(c) {
 				c.String(http.StatusOK, "success")
 			} else {
