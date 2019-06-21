@@ -10,7 +10,7 @@
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-button type="danger" icon="el-icon-delete" round @click="Remove(props.row.UUID)">Remove</el-button>
-        <el-form label-position="left" label-width="80px" class="demo-table-expand">
+        <el-form label-position="left" label-width="80px" class="demo-table-expand" v-show="props.row.status === 'Online'? true : false">
           <el-form-item label="Memory">
             <span>{{ props.row.memoryUsed }}GiB / {{ props.row.memoryTotal }}GiB</span>
           </el-form-item>
