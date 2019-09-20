@@ -56,23 +56,12 @@ func Dashboard() {
 		servers := new(status.Servers)
 		status.GetServers(servers)
 		c.JSON(http.StatusOK, servers)
-		// if c.ClientIP() == "127.0.0.1" || c.ClientIP() == "::1" || c.ClientIP() == "localhost" || c.ClientIP() == "0.0.0.0" {
-		// 	servers := new(status.Servers)
-		// 	status.GetServers(servers)
-		// 	c.JSON(http.StatusOK, servers)
-		// } else {
-		// 	c.String(http.StatusForbidden, "Forbidden")
-		// }
 	})
 	r.POST("/api/servers", func(c *gin.Context) {
-		if c.ClientIP() == "127.0.0.1" || c.ClientIP() == "::1" || c.ClientIP() == "localhost" || c.ClientIP() == "0.0.0.0" {
-			if handlePost(c) {
-				c.String(http.StatusOK, "success")
-			} else {
-				c.String(http.StatusOK, "fail")
-			}
+		if handlePost(c) {
+			c.String(http.StatusOK, "success")
 		} else {
-			c.String(http.StatusForbidden, "Forbidden")
+			c.String(http.StatusOK, "fail")
 		}
 	})
 	statikFS, err := fs.New()
