@@ -103,14 +103,14 @@ func getTraffic(c chan traffic) {
 			return
 		}
 		receiveAndSend := strings.Split(string(b[:len(b)-1]), " ")
-		receive, err := strconv.ParseUint(receiveAndSend[0], 10, 64)
+		receive, err := strconv.ParseFloat(receiveAndSend[0], 10)
 		if err != nil {
 			logger.Logger.Warn("Get receive from string failed. Return nil struct traffic.",
 				zap.Error(err))
 			c <- *new(traffic)
 			return
 		}
-		send, err := strconv.ParseUint(receiveAndSend[1], 10, 64)
+		send, err := strconv.ParseFloat(receiveAndSend[1], 10)
 		if err != nil {
 			logger.Logger.Warn("Get send from string failed. Return nil struct traffic.",
 				zap.Error(err))
@@ -118,7 +118,7 @@ func getTraffic(c chan traffic) {
 			return
 		}
 		var ret traffic
-		ret.receive, ret.send, ret.t = receive, send, time
+		ret.receive, ret.send, ret.t = uint64(receive), uint64(send), time
 		c <- ret
 	}
 }
